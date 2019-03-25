@@ -6,7 +6,7 @@ class ConstantApproximation:
         self.target = target
         self.partition = partition
         self.beta = beta
-        
+        self.NDOF = partition.N
         self.dof = np.zeros(partition.N)
         
         for i,intv in enumerate(partition.intervals):
