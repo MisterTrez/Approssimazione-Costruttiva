@@ -29,8 +29,10 @@ class ConstantApproximation:
         elif mon:
             err = 0.0
             for i, intv in enumerate(self.partition.intervals):
-                fa = self(intv[0])
-                fb = self(intv[1])
+                fa = self.target(intv[0])
+                fb = self.target(intv[1])
+                #print("fa " + str(fa))
+                #print("fb " + str(fb))
                 err = max(err, abs(fa-self.dof[i]), abs(fb-self.dof[i]))
                 
             return err
