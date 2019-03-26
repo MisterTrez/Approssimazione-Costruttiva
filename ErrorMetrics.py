@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 
 def MaxNorm(approx, mon = False, points = 25):
         if not mon:
