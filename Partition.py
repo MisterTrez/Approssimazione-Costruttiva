@@ -15,3 +15,19 @@ class Partition:
         self.intervals = []
         for i in range(self.N):
             self.intervals.append( (self.points[i], self.points[i+1]) )
+            
+    def intervalFromPoint(self, x):
+        part = self.points
+        left = 0
+        right = self.N
+        while right - left > 1:
+            mid = int(np.floor((left+right)/2))
+            if x < part[mid]:
+                right = mid
+            elif x > part[mid]:
+                left = mid
+            else:
+                left = mid
+                right = mid + 1
+                
+        return left
