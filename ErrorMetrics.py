@@ -161,14 +161,17 @@ class ErrorManager:
         
         if ymax == 1.1:
             maxEOC = np.nanmax(self.EOC)
-            yround = math.ceil(maxEOC)
-            ymax = yround + 0.1
+            if not np.isnan(maxEOC):
+                yround = math.ceil(maxEOC)
+                ymax = yround + 0.1
+            else:
+                ymax = -1
         
-        
-        ax.set_title("EOC")
-        ax.set_xlabel("N")
-        ax.set_ylabel("EOC_n")
-        ax.set_ylim((0.0, ymax))
-        for i in range(0, math.ceil(ymax)):
-            ax.axhline(i, color="r", dashes=[10,10], linewidth = 0.5)
-        ax.plot(self.dofs, self.EOC)
+        if ymax > 0:
+            ax.set_title("EOC")
+            ax.set_xlabel("N")
+            ax.set_ylabel("EOC_n")
+            ax.set_ylim((0.0, ymax))
+            for i in range(0, math.ceil(ymax)):
+                ax.axhline(i, color="r", dashes=[10,10], linewidth = 0.5)
+            ax.plot(self.dofs, self.EOC)
